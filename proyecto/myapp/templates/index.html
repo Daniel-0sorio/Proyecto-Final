@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourUSM</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">YourUSM</a>
+        <div class="user-options">
+            <button id="loginBtn">Iniciar sesión</button>
+            <button id="registerBtn">Registrarse</button>
+        </div>
+    </header>
+    <main>
+        <div class="description">
+            <h1>Bienvenido a YourUSM</h1>
+            <p>Página desarrollada por estudiantes para facilitar el proceso de realizar denuncias.</p>
+        </div>
+        <button id="reportBtn" class="main-button">Denunciar</button>
+    </main>
+
+    <!-- Ventanas modales -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('loginModal')">×</button>
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <label for="emailLogin">Correo electrónico:</label>
+                <input type="email" id="emailLogin" name="email" placeholder="ejemplo@usm.cl" required>
+                <label for="passwordLogin">Contraseña:</label>
+                <input type="password" id="passwordLogin" name="password" required>
+                <button type="submit">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('registerModal')">×</button>
+            <h2>Registrarse</h2>
+            <form id="registerForm">
+                <label for="emailRegister">Correo electrónico:</label>
+                <input type="email" id="emailRegister" name="email" placeholder="ejemplo@usm.cl" required>
+                <label for="passwordRegister">Contraseña:</label>
+                <input type="password" id="passwordRegister" name="password" required>
+                <label for="confirmPassword">Confirmar contraseña:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('reportModal')">×</button>
+            <h2>Realizar Denuncia</h2>
+            <form id="reportForm">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="surname">Apellido:</label>
+                <input type="text" id="surname" name="surname" required>
+                <label for="reason">Motivo:</label>
+                <select id="reason" name="reason" required>
+                    <option value="violencia-genero">Violencia de género</option>
+                    <option value="acoso-sexual">Acoso sexual</option>
+                    <option value="discriminacion-genero">Discriminación de género</option>
+                    <option value="ciberacoso">Ciberacoso</option>
+                    <option value="discriminacion-embarazo">Discriminación por embarazo</option>
+                    <option value="estigmas-creencias">Estigmas por creencias</option>
+                </select>
+                <label for="details">Detalles:</label>
+                <textarea id="details" name="details" required></textarea>
+                <button type="submit">Enviar denuncia</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+

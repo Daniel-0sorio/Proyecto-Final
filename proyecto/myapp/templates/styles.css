@@ -1,0 +1,82 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('./image1.png'), url('./image2.png'), url('./image3.png'), url('./image4.png');
+    background-size: cover, cover, cover, cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e44d4d;
+    text-decoration: none;
+}
+
+.user-options button {
+    margin-left: 10px;
+}
+
+main {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.main-button {
+    background-color: #e44d4d;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 400px;
+    text-align: left;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    height: 300px;  /* Puedes ajustar el alto si es necesario */
+    object-fit: cover; /* Esto asegurará que la imagen se ajuste correctamente dentro del contenedor */
+    border-radius: 10px;
+}
