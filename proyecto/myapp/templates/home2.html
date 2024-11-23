@@ -17,7 +17,7 @@
 
         /* Estilos para la barra de navegación */
         nav {
-            background-color: #333;
+            background-color: #0d335a; /* Azul oscuro */
             color: white;
             padding: 15px 0;
             text-align: center;
@@ -36,7 +36,7 @@
 
         /* Banner de bienvenida */
         .banner {
-            background-color: #4CAF50;
+            background-color: #4a85b6; /* Azul claro */
             color: white;
             text-align: center;
             padding: 100px 20px;
@@ -58,7 +58,7 @@
             text-align: center;
             font-size: 30px;
             margin: 40px 0;
-            color: #333;
+            color: #1d466c; /* Azul intermedio */
         }
 
         .cards {
@@ -83,8 +83,8 @@
 
         .card img {
             width: 100%;
-            height: 300px;  /* Ajuste de tamaño con CSS */
-            object-fit: cover;  /* Asegura que la imagen se recorte si es necesario */
+            height: 300px;
+            object-fit: cover;
             border-radius: 10px;
         }
 
@@ -101,11 +101,65 @@
 
         /* Pie de página */
         footer {
-            background-color: #333;
+            background-color: #0d335a; /* Azul marino oscuro */
             color: white;
             text-align: center;
             padding: 20px;
             margin-top: 40px;
+        }
+
+        /* Estilos del Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #9c83c3;
+            padding: 40px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #3e1649; /* Púrpura oscuro */
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.4em;
+            color: #ffffff; /* Púrpura */
+            line-height: 1.5;
+        }
+
+        /* Estilos para el botón de cierre (X) */
+        .close-btn {
+            color: #aaa;
+            font-size: 35px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -113,37 +167,49 @@
 
     <!-- Barra de navegación -->
     <nav>
-        <a href="{% url 'home' %}">Inicio</a>
-        <a href="{% url 'login' %}">Servicios</a>
-        <a href="#">Nosotros</a>
+        <a href="{% url 'login' %}">Iniciar Sesión</a>
+        <a href="{% url 'signin' %}">Registrarse</a>
+        <a href="#" id="nosotrosLink">Nosotros</a>
         <a href="#">Contacto</a>
     </nav>
 
     <!-- Banner de bienvenida -->
     <div class="banner">
         <h1>Bienvenidos a YourUSM</h1>
-        <p>Explora nuestros servicios y descubre lo que podemos hacer por ti.</p>
+        <p>El coraje de denunciar cambia vidas, empieza con la tuya.</p>
     </div>
 
     <!-- Contenido principal -->
     <div class="container">
         <h2 class="section-title">Nuestros Servicios</h2>
         <div class="cards">
-            <div class="card">
-                <img src="{% static 'gatito.jpg' %}" alt="Servicio 1">
-                <h3>Servicio 1</h3>
-                <p>Descripción breve del servicio 1.</p>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/400x300" alt="Servicio 2">
-                <h3>Servicio 2</h3>
-                <p>Descripción breve del servicio 2.</p>
-            </div>
-            <div class="card">
+            <!-- Enlace para Servicio 1 -->
+            <a href="{% url 'quiensomos' %}" class="card">
+                <img src="{% static 'Diseño sin título.jpg' %}" alt="Servicio 1">
+                <h3>Quién somos</h3>
+                <p>Conoce más sobre nuestra aplicación.</p>
+            </a>
+            <!-- Enlace para Servicio 2 -->
+            <a href="{% url 'comod' %}" class="card">
+                <img src="{% static 'YourUSM.jpg' %}" alt="Servicio 2">
+                <h3>Como denunciar</h3>
+                <p>Aprende a como denunciar de manera segura y confiable.</p>
+            </a>
+            <!-- Enlace para Servicio 3 -->
+            <a href="{% url 'login' %}" class="card">
                 <img src="https://via.placeholder.com/400x300" alt="Servicio 3">
                 <h3>Servicio 3</h3>
                 <p>Descripción breve del servicio 3.</p>
-            </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal de Nosotros -->
+    <div class="modal" id="infoModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <h2>¿Para qué sirve nuestra aplicación?</h2>
+            <p>Esta aplicación te permite gestionar tus tareas de manera eficiente, con recordatorios, seguimiento y estadísticas para ayudarte a ser más productivo. ¡Hazlo todo desde tu dispositivo!</p>
         </div>
     </div>
 
@@ -151,6 +217,31 @@
     <footer>
         <p>&copy; 2024 Mi Página Web. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        // Obtener los elementos
+        const nosotrosLink = document.getElementById('nosotrosLink');
+        const infoModal = document.getElementById('infoModal');
+        const closeBtn = document.getElementById('closeBtn');
+
+        // Mostrar el modal cuando se hace clic en el enlace "Nosotros"
+        nosotrosLink.addEventListener('click', (event) => {
+            event.preventDefault();  // Prevenir la acción predeterminada del enlace
+            infoModal.style.display = 'flex';  // Mostrar el modal
+        });
+
+        // Cerrar el modal cuando se hace clic en la "X"
+        closeBtn.addEventListener('click', () => {
+            infoModal.style.display = 'none';  // Ocultar el modal
+        });
+
+        // Cerrar el modal si se hace clic fuera de él
+        window.addEventListener('click', (event) => {
+            if (event.target === infoModal) {
+                infoModal.style.display = 'none';  // Ocultar el modal si se hace clic fuera de él
+            }
+        });
+    </script>
 
 </body>
 </html>

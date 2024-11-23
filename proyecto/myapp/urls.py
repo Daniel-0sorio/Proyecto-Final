@@ -25,6 +25,9 @@ urlpatterns = [
     path('mis_denuncias/', views.mis_denuncias, name='mis_denuncias'),
     path('login/', views.login, name='login'),
     path('signin/', views.signin, name='signin'),
+    path('quiensomos/', views.quiensomos, name='quiensomos'),
+    path('comod/', views.comod, name='comod'),
+
 ]
     #path('members/', views.members, name='members'),
     #path('members/details/<int:id>', views.details, name='details'),

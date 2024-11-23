@@ -18,3 +18,9 @@ def login(request):
 
 def signin(request):
   return render(request, 'signin.html')
+
+def quiensomos(request):
+  return render(request, 'quiensomos.html')
+
+def comod(request):
+  return render(request, 'comod.html')
